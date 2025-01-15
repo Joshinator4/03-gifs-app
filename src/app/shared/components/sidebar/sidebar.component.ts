@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { GifsService } from 'src/app/gifs/services/gifs.service';
 
 @Component({
@@ -12,6 +12,9 @@ export class SidebarComponent {
   constructor(private gifsService: GifsService){
 
   }
-  public historialEtiquetas: string[] = this.gifsService.historialEtiquetas;
+
+  get historialEtiquetas(): string[]{
+    return this.gifsService.historialEtiquetas;
+  }
 
 }
