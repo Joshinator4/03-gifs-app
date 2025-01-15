@@ -1,11 +1,21 @@
 <div class="bg-dark border-right p-3" id="sidebar">
   <h3 class="text-light">GifsApp</h3>
   <hr>
-  <div class="list-group list-reset">
-    <button class="list-group-item list-group-item-action">Call of Duty</button>
-    <button class="list-group-item list-group-item-action">Call of Duty</button>
-    <button class="list-group-item list-group-item-action">Call of Duty</button>
-    <button class="list-group-item list-group-item-action">Call of Duty</button>
+  <div class="list-group list-reset" *ngFor="let etiqueta of historialEtiquetas">
+    <!-- <div class="list-group-item list-group-item-action" *ngFor="let etiqueta of historialEtiquetas">
+      <button> {{ etiqueta }}</button>
+    </div> -->
+    <button class="list-group-item list-group-item-action">
+      {{ etiqueta }}
+    </button>
+    <!-- <ul>
+      <li *ngFor="let etiqueta of historialEtiquetas">
+
+      </li>
+    </ul> -->
+
+
+
   </div>
 
 </div>

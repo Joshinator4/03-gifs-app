@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../../services/gifs.service';
 
 @Component({
   selector: 'gifs-search-box',
@@ -14,13 +15,19 @@ export class SearchBoxComponent {
 
   // }
 
-
-
   @ViewChild('txtInputEtiqueta')//esto coge el valor de la etiqueta generada en el html #txtInputEtiqueta
   public inputEtiqueta!: ElementRef<HTMLInputElement>; //esto recibe el elemento que hay en el input del html
   //si no se pone la exclamación da error. la exclamación indica a angular que va a tener un valor si o si, por eso no hay que inicializarla
-  buscarEtiqueta(): void{
-    const nuevaEtiqueta = this.inputEtiqueta.nativeElement.value;
-    console.log({nuevaEtiqueta});
+
+  constructor(private gifsService: GifsService){
+
   }
+
+  buscarEtiqueta(): void{
+     const nuevaEtiqueta = this.inputEtiqueta.nativeElement.value;
+     this.gifsService.buscarEtiqueta(nuevaEtiqueta);
+     this.inputEtiqueta.nativeElement.value = "";//limpia el imput
+  }
+
+
 }
