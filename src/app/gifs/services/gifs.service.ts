@@ -53,7 +53,7 @@ export class GifsService {
                     .set('q', etiqueta);
 
     //!Se realiza la peticion get con la url generada. El subscribe es para generar un observable. Un observable es un objeto en el cual a lo largo del tiempo, puede estar emitiendo diferentes valores. Nos subscribirnos a un observable para estar escuchando las emisiones que ese objeto está emitiendo
-    this.http.get(`${ this.serviceUrl }/serach`, { params }).subscribe(resp => {
+    this.http.get(`${ this.serviceUrl }/search`, { params }).subscribe(resp => {
       console.log(resp);
 
     });
