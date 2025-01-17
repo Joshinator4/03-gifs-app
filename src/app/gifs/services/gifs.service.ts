@@ -8,8 +8,8 @@ export class GifsService {
 
   // se genera array para historial de las etiquetas
   private _historialEtiquetas: string[] = [];
-  private apiKey: string = 'wVtABfpJzq2QKtUoCSHivJNQVlUtJKP9';
-  private serviceUrl: string = "https://api.giphy.com/v1/gifs"
+  private apiKey: string = 'wVtABfpJzq2QKtUoCSHivJNQVlUtJKP9';//esto es la clave generada de la aplicacion de giphy
+  private serviceUrl: string = "https://api.giphy.com/v1/gifs"//esta es elprincipio de la url de giphy para buscar los gifs
 
   //creamos un get para acceder al dato. Lo creamos como privado para evitar que se modifique el array accidentalmente. De hecho, utilizamos el spread (...) para evitar que se cree una referencia al dato al realizar el return.
   get historialEtiquetas(){
