@@ -2,7 +2,10 @@
   <h3 class="text-light">GifsApp</h3>
   <hr>
   <div class="list-group list-reset">
-    <button *ngFor="let etiqueta of historialEtiquetas" class="list-group-item list-group-item-action">
+    <!-- Se realiza ngFor para recorrer las etiquetas del historial y nos quedamos con el índice para usarlo en el método -->
+    <button *ngFor="let etiqueta of historialEtiquetas let i=index"
+    class="list-group-item list-group-item-action"
+    (click)="recuperarEtiqueta(i)">
       {{ etiqueta }}
     </button>
   </div>

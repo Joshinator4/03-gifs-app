@@ -2,11 +2,15 @@
   <!-- En pantallas medianas ocupara 3/12 columnas creadas -->
   <!-- En pantallas pequeñas ocupara 6/12 columnas creadas -->
   <div *ngFor="let gif of listadoGifs" class="col-md-3 col-sm-6">
+      <!-- Se realiza ngFor para recorrer el listado de gifs con sus atributos y poder usarlos para mostrar el card como queremos -->
     <div class="card mb-2 text-center bg-dark">
-      <img src={{gif.images.original.url}} alt="gifs" height="450px">
+       <img class="card-img-top" src={{gif.images.original.url}} alt="gifs" height="450px"><!--Accedemos al url de la imagen -->
       <div class="card-body">
+        <h5 class="card-title text-white">
+          {{gif.title}}<!--Accedemos al titulo del gif -->
+        </h5>
         <p class="card-text text-white">
-          {{gif.title}}
+          {{gif.alt_text}}
         </p>
       </div>
     </div>

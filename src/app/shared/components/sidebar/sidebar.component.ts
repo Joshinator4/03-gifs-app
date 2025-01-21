@@ -13,6 +13,10 @@ export class SidebarComponent {
 
   }
 
+  recuperarEtiqueta(indice: number){
+    this.gifsService.buscarEtiqueta(this.historialEtiquetas[indice])
+  }
+
   get historialEtiquetas(): string[]{
     return this.gifsService.historialEtiquetas;
   }
