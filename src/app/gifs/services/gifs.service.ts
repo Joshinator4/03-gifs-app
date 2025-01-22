@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +14,21 @@ export class GifsService {
   private apiKey: string = 'wVtABfpJzq2QKtUoCSHivJNQVlUtJKP9';//esto es la clave generada de la aplicacion de giphy
   private serviceUrl: string = "https://api.giphy.com/v1/gifs"//esta es elprincipio de la url de giphy para buscar los gifs
 
-
+  constructor(private http: HttpClient) {this.cargarLocalStorage() }
 
 
   //creamos un get para acceder al dato. Lo creamos como privado para evitar que se modifique el array accidentalmente. De hecho, utilizamos el spread (...) para evitar que se cree una referencia al dato al realizar el return.
   get historialEtiquetas(){
     return [...this._historialEtiquetas];
+  }
+
+  //! Este método cogerá el historial del localStorage que esta en JSON y se parsea al historial de etiquetas como array
+  private cargarLocalStorage(){
+    if(!localStorage.getItem('historial'))return;
+    this._historialEtiquetas = JSON.parse(localStorage.getItem('historial')!)// LA ! INDICA QUE NO SERÁ NULL PORQUE YA LO HEMOS FILTRADO JUSTO ARRIBA EN ESTE METODO
+
+    if(this._historialEtiquetas.length == 0)return; //Si el array no tiene etiquetas salimos
+    this.buscarEtiqueta(this._historialEtiquetas[0]);//para que se muestre los gifs de la ultima búsqueda hacemos la llamada a buscarEtiquetas con la posicion0 del array de historialEtiquetas
   }
 
 
@@ -43,6 +52,7 @@ export class GifsService {
     this._historialEtiquetas.unshift(etiqueta);
     console.log(this._historialEtiquetas);
 
+    this.almacenarLocalStorage();
   }
 
   //Este método filtarará la etiqueta llamando a ordenarHistorial, y creará una peticion get al servidor de gifs
@@ -66,9 +76,12 @@ export class GifsService {
 
     });
 
-
+  }
+  //! Este método es para guardar en el localStorage el historial de etiquetas en el formato json, ya que localstorage solo guarda strings
+  private almacenarLocalStorage(){
+    localStorage.setItem('historial', JSON.stringify(this._historialEtiquetas))//*stringyfy convierte el array a sting para guardarlo como un JSON
   }
 
-  constructor(private http: HttpClient) { }
-}import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
+
+}
 

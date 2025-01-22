@@ -29,7 +29,4 @@ export class SearchBoxComponent {
      this.inputEtiqueta.nativeElement.value = "";//limpia el imput
   }
 
-
-
-
 }
